@@ -1,0 +1,19 @@
+Demo Video:- https://drive.google.com/file/d/1U9_1s4BwOfuAACgALa8hDfNd7-DN93Ye/view?usp=sharing
+Installation:
+Prerequisites (Node.js, Docker)
+Build Docker Images:
+For Node.js:-
+
+docker build -t project-issue-tracker-app .
+
+For MySQL Database:-
+docker build -t project-issue-tracker-mysql -f Dockerfile.mysql .
+
+Run Docker Containers:
+
+Run MySQL Container:-
+docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=root_password -e MYSQL_DATABASE=issue_tracker -e MYSQL_USER=dev -e MYSQL_PASSWORD=1234 project-issue-tracker-mysql
+
+Run Node.js Application Container:-
+docker run -d --name app-container -p 8080:3000 --link mysql-container project-issue-tracker-app
+
